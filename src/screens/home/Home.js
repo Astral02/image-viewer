@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './Home.css';
 import Header from '../../common/header/Header';
 import Card from '@material-ui/core/Card';
@@ -8,9 +8,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
-import AvatarIcon from '../../assets/profile.png';
-import {withStyles} from '@material-ui/core/styles';
-import FavoriteIcon from '@material-ui/icons/FavoriteBorder';
+import AvatarIcon from '../../assets/ic_profile.png';
+import { withStyles } from '@material-ui/core/styles';
+import FavoriteIconBorder from '@material-ui/icons/FavoriteBorder';
+import FavoriteIconFill from '@material-ui/icons/Favorite';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -19,7 +20,7 @@ import Button from '@material-ui/core/Button';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 
-const styles =  theme => ({
+const styles = theme => ({
   card: {
     maxWidth: 500,
   },
@@ -28,118 +29,147 @@ const styles =  theme => ({
   },
   media: {
     height: 0,
-    margin:'10px',
+    margin: '10px',
     paddingTop: '56.25%', // 16:9
   },
   formControl: {
-    width:'100%'
+    width: '100%'
   },
-  comment:{
-    display:'flex',
-    alignItems:'center'
+  comment: {
+    display: 'flex',
+    alignItems: 'center'
   }
 });
 
-class Home extends Component{
+class Home extends Component {
 
   constructor() {
-  super();
-  this.state = {
-    "data": [
-      {
-        "comments": {
-          "count": 0
-        },
-        "caption": {
-          "created_time": "1296710352",
-          "text": "Inside le truc #foodtruck",
-          "from": {
+    super();
+    this.state = {
+      "data": [
+        {
+          "comments": {
+            "count": 0
+          },
+          "caption": {
+            "created_time": "1296710352",
+            "text": "Inside le truc #foodtruck",
+            "from": {
+              "username": "kevin",
+              "full_name": "Kevin Systrom",
+              "type": "user",
+              "id": "3"
+            },
+            "id": "26621408"
+          },
+          "likes": {
+            "count": 15
+          },
+          "link": "http://instagr.am/p/BWrVZ/",
+          "user": {
             "username": "kevin",
-            "full_name": "Kevin Systrom",
-            "type": "user",
+            "profile_picture": "http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg",
             "id": "3"
           },
-          "id": "26621408"
-        },
-        "likes": {
-          "count": 15
-        },
-        "link": "http://instagr.am/p/BWrVZ/",
-        "user": {
-          "username": "kevin",
-          "profile_picture": "http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg",
-          "id": "3"
-        },
-        "created_time": "1296710327",
-        "images": {
-          "low_resolution": {
-            "url": "http://distillery.s3.amazonaws.com/media/2011/02/02/6ea7baea55774c5e81e7e3e1f6e791a7_6.jpg",
-            "width": 306,
-            "height": 306
+          "created_time": "1296710327",
+          "images": {
+            "low_resolution": {
+              "url": "http://distillery.s3.amazonaws.com/media/2011/02/02/6ea7baea55774c5e81e7e3e1f6e791a7_6.jpg",
+              "width": 306,
+              "height": 306
+            },
+            "thumbnail": {
+              "url": "http://distillery.s3.amazonaws.com/media/2011/02/02/6ea7baea55774c5e81e7e3e1f6e791a7_5.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "standard_resolution": {
+              "url": "http://distillery.s3.amazonaws.com/media/2011/02/02/6ea7baea55774c5e81e7e3e1f6e791a7_7.jpg",
+              "width": 612,
+              "height": 612
+            }
           },
-          "thumbnail": {
-            "url": "http://distillery.s3.amazonaws.com/media/2011/02/02/6ea7baea55774c5e81e7e3e1f6e791a7_5.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "standard_resolution": {
-            "url": "http://distillery.s3.amazonaws.com/media/2011/02/02/6ea7baea55774c5e81e7e3e1f6e791a7_7.jpg",
-            "width": 612,
-            "height": 612
+          "type": "image",
+          "users_in_photo": [],
+          "filter": "Earlybird",
+          "tags": ["foodtruck"],
+          "id": "22721881",
+          "location": {
+            "latitude": 37.778720183610183,
+            "longitude": -122.3962783813477,
+            "id": "520640",
+            "street_address": "",
+            "name": "Le Truc"
           }
         },
-        "type": "image",
-        "users_in_photo": [],
-        "filter": "Earlybird",
-        "tags": ["foodtruck"],
-        "id": "22721881",
-        "location": {
-          "latitude": 37.778720183610183,
-          "longitude": -122.3962783813477,
-          "id": "520640",
-          "street_address": "",
-          "name": "Le Truc"
+        {
+          "comments": {
+            "count": 0
+          },
+          "caption": {
+            "created_time": "1296710352",
+            "text": "Inside le truc #foodtruck",
+            "from": {
+              "username": "kevin",
+              "full_name": "Kevin Systrom",
+              "type": "user",
+              "id": "3"
+            },
+            "id": "26621409"
+          },
+          "likes": {
+            "count": 15
+          },
+          "link": "http://instagr.am/p/BWrVZ/",
+          "user": {
+            "username": "kevin",
+            "profile_picture": "http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg",
+            "id": "3"
+          },
+          "created_time": "1296710327",
+          "images": {
+            "low_resolution": {
+              "url": "http://distillery.s3.amazonaws.com/media/2011/02/02/6ea7baea55774c5e81e7e3e1f6e791a7_6.jpg",
+              "width": 306,
+              "height": 306
+            },
+            "thumbnail": {
+              "url": "http://distillery.s3.amazonaws.com/media/2011/02/02/6ea7baea55774c5e81e7e3e1f6e791a7_5.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "standard_resolution": {
+              "url": "http://distillery.s3.amazonaws.com/media/2011/02/02/6ea7baea55774c5e81e7e3e1f6e791a7_7.jpg",
+              "width": 612,
+              "height": 612
+            }
+          },
+          "type": "image",
+          "users_in_photo": [],
+          "filter": "Earlybird",
+          "tags": ["foodtruck"],
+          "id": "22721882",
+          "location": {
+            "latitude": 37.778720183610183,
+            "longitude": -122.3962783813477,
+            "id": "520640",
+            "street_address": "",
+            "name": "Le Truc"
+          }
         }
-      },
-
-    ]
-  }
-}
-
-  componentDidMount(){
-    // let url = ``;
-    // return fetch(url,{
-    //   method:'GET',
-    //   headers: {
-    //     'authorization' : this.props.Auth.auth
-    //   }
-    //
-    // }).then((response) =>{
-    //   that.setState({isLoading:false});
-    //   if (response.status == 401) {
-    //     that.logout();
-    //   } else {
-    //     return response.json();
-    //   }
-    // }).then((jsonResponse) =>{
-    //   if (jsonResponse && jsonResponse.status == "3") {
-    //     that.paymentComplete(jsonResponse);
-    //   }else {
-    //     that.handleError();
-    //   }
-    // }).catch((error) => {
-    //   that.handleError();
-    // });
+      ],
+      likeSet: new Set(),
+      comments: {}
+    }
   }
 
-  render(){
-    const{classes} = this.props;
-
-    return(
+  render() {
+    const { classes } = this.props;
+    return (
       <div>
         <Header
           isSearchBarVisible={true}
-          isProfileIconVisible={true}/>
+          isProfileIconVisible={true} />
         <GridList cellHeight={'auto'} spacing={5}>
           {this.state.data.map(item => (
             <GridListTile key={item.id}>
@@ -147,7 +177,8 @@ class Home extends Component{
                 classes={classes}
                 item={item}
                 onLikedClicked={this.likeClickHandler}
-                onAddCommentClicked={this.addCommentClickHandler}/>
+                onAddCommentClicked={this.addCommentClickHandler}
+                likeSet={this.state.likeSet} />
             </GridListTile>
           ))}
         </GridList>
@@ -155,27 +186,41 @@ class Home extends Component{
     );
   }
 
-  likeClickHandler = (id) =>{
-    console.log('like id',id);
-    var index = this.state.data.findIndex((item) => {
+  likeClickHandler = (id) => {
+    console.log('like id', id);
+    var foundItem = this.state.data.find((item) => {
       return item.id === id;
     })
-    var foundItem = this.state[index];
 
-    console.log('found item',foundItem);
+    console.log('found item', foundItem);
     if (foundItem !== undefined) {
-      let likes = foundItem.likes.count+1;
-    }
+      if (!this.state.likeSet.has(id)) {
+        foundItem.likes.count++;
+        this.setState(({ likeSet }) => ({
+          likeSet: new Set(likeSet.add(id))
+        }))
+      } else {
+        foundItem.likes.count--;
+        this.setState(({ likeSet }) => {
+          const newLike = new Set(likeSet);
+          newLike.delete(id);
 
+          return {
+            likeSet: newLike
+          };
+        });
+      }
+    }
+    console.log('state', this.state.data);
   }
 
-  addCommentClickHandler = (id)=>{
-    console.log('coment id',id);
+  addCommentClickHandler = (id) => {
+    console.log('coment id', id);
   }
 }
 
 function HomeItem(props) {
-  const {classes, item} = props;
+  const { classes, item, likeSet } = props;
   let createdTime = new Date(0);
   createdTime.setUTCSeconds(item.created_time);
   let yyyy = createdTime.getFullYear();
@@ -186,16 +231,16 @@ function HomeItem(props) {
   let MM = createdTime.getMinutes();
   let ss = createdTime.getSeconds();
 
-  let time = dd+"/"+mm+"/"+yyyy+" "+HH+":"+MM+":"+ss;
-  let hashTags = item.tags.map(hash =>{
-    return "#"+hash;
+  let time = dd + "/" + mm + "/" + yyyy + " " + HH + ":" + MM + ":" + ss;
+  let hashTags = item.tags.map(hash => {
+    return "#" + hash;
   });
-  return(
+  return (
     <div className="home-item-main-container">
       <Card className={classes.card}>
         <CardHeader
           avatar={
-            <Avatar alt="Remy Sharp" src={AvatarIcon} className={classes.avatar}/>
+            <Avatar alt="Remy Sharp" src={AvatarIcon} className={classes.avatar} />
           }
           title={item.user.username}
           subheader={time}
@@ -209,13 +254,14 @@ function HomeItem(props) {
           <Typography component="p">
             {item.caption.text}
           </Typography>
-          <Typography style={{color:'#4dabf5'}} component="p" >
+          <Typography style={{ color: '#4dabf5' }} component="p" >
             {hashTags.join(' ')}
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Add to favorites" onClick={props.onLikedClicked.bind(this,item.id)}>
-            <FavoriteIcon />
+          <IconButton aria-label="Add to favorites" onClick={props.onLikedClicked.bind(this, item.id)}>
+            {likeSet.has(item.id) && <FavoriteIconFill style={{ color: '#F44336' }} />}
+            {!likeSet.has(item.id) && <FavoriteIconBorder />}
           </IconButton>
           <Typography component="p">
             {item.likes.count} Likes
@@ -224,10 +270,10 @@ function HomeItem(props) {
         <CardActions className={classes.comment}>
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="comment">Add Comment</InputLabel>
-            <Input id="comment"/>
+            <Input id="comment" />
           </FormControl>
           <FormControl>
-            <Button onClick={props.onLikedClicked.bind(this,item.id)} variant="contained" color="primary">
+            <Button onClick={props.onLikedClicked.bind(this, item.id)} variant="contained" color="primary">
               ADD
             </Button>
           </FormControl>
