@@ -48,6 +48,7 @@ class Login extends Component {
 
         if (this.state.username === "admin" && this.state.password === "admin") {
             sessionStorage.setItem('access-token', '8661035776.d0fcd39.87fd934e04f84253aaf234d8bd4e4c65');
+            sessionStorage.setItem('username','admin');
             this.setState({ loggedIn: true });
         } else {
             this.setState({ incorrectUsernamePassword: "dispBlock" });

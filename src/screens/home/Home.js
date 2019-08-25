@@ -45,6 +45,7 @@ class Home extends Component {
 
   constructor() {
     super();
+    sessionStorage.setItem('username', 'admin');
     this.state = {
       "data": [
         {
@@ -159,12 +160,16 @@ class Home extends Component {
         }
       ],
       likeSet: new Set(),
-      comments: {}
+      comments: {
+        22721881: ['lafhlsaf', 'asfkgisag']
+      },
+      currrentComment: ""
     }
   }
 
   render() {
     const { classes } = this.props;
+
     return (
       <div>
         <Header
@@ -178,7 +183,10 @@ class Home extends Component {
                 item={item}
                 onLikedClicked={this.likeClickHandler}
                 onAddCommentClicked={this.addCommentClickHandler}
-                likeSet={this.state.likeSet} />
+                commentChangeHandler={this.commentChangeHandler}
+                likeSet={this.state.likeSet}
+                comments={this.state.comments}
+                commentValue={this.state.currentComment} />
             </GridListTile>
           ))}
         </GridList>
@@ -215,12 +223,31 @@ class Home extends Component {
   }
 
   addCommentClickHandler = (id) => {
-    console.log('coment id', id);
+    console.log('coment id', id, this.state.currentComment, this.state.comments);
+
+    let commentList = this.state.comments.hasOwnProperty(id) ?
+      this.state.comments[id].concat(this.state.currentComment) : [].concat(this.state.currentComment);
+
+    console.log('comment list', commentList);
+    this.setState({
+      comments: {
+        ...this.state.comments,
+        [id]: commentList
+      },
+      currentComment: ''
+    })
+  }
+
+
+  commentChangeHandler = (e) => {
+    this.setState({
+      currentComment: e.target.value
+    });
   }
 }
 
 function HomeItem(props) {
-  const { classes, item, likeSet } = props;
+  const { classes, item, likeSet, comments } = props;
   let createdTime = new Date(0);
   createdTime.setUTCSeconds(item.created_time);
   let yyyy = createdTime.getFullYear();
@@ -267,13 +294,28 @@ function HomeItem(props) {
             {item.likes.count} Likes
           </Typography>
         </CardActions>
+        <CardContent>
+          {comments.hasOwnProperty(item.id) && comments[item.id].map((comment) => {
+            return (
+              <div className="row">
+                <Typography component="p" style={{ fontWeight: 'bold' }}>
+                  {sessionStorage.getItem('username')}:
+                </Typography>
+                <Typography component="p" >
+                  {comment}
+                </Typography>
+              </div>
+            )
+          })}
+        </CardContent>
         <CardActions className={classes.comment}>
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="comment">Add Comment</InputLabel>
-            <Input id="comment" />
+            <Input id="comment" value={props.commentValue} onChange={props.commentChangeHandler} />
           </FormControl>
           <FormControl>
-            <Button onClick={props.onLikedClicked.bind(this, item.id)} variant="contained" color="primary">
+            <Button onClick={props.onAddCommentClicked.bind(this, item.id)}
+              variant="contained" color="primary">
               ADD
             </Button>
           </FormControl>
