@@ -211,7 +211,7 @@ class Home extends Component{
   }
 
   navigateToAccount = () =>{
-    // this.props.history.push('/account');
+    this.props.history.push('/profile');
   }
 }
 
@@ -329,6 +329,9 @@ class HomeItem extends Component{
   }
 
   onAddCommentClicked = (id) => {
+    if (this.state.comment === "" || typeof this.state.comment === undefined) {
+      return;
+    }
     this.setState({
       comment:""
     });
