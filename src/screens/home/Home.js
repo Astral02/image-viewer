@@ -43,20 +43,21 @@ const styles =  theme => ({
 
 class Home extends Component{
 
-  constructor() {
-    super();
-    sessionStorage.setItem('username','admin');
-    sessionStorage.setItem('access-token', '8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784');
+  constructor(props) {
+    super(props);
+    if (sessionStorage.getItem('access-token') == null) {
+      props.history.replace('/');
+    }
     this.state = {
       "data": [],
       filteredData:[],
       userData:{},
       likeSet:new Set(),
       comments:{},
-      currrentComment:""
+      currrentComment:"",
+      currentCommentList:[]
     }
 }
-
   componentDidMount(){
     this.getUserInfo();
     this.getMediaData();
@@ -70,7 +71,9 @@ class Home extends Component{
           userProfileUrl={this.state.userData.profile_picture}
           isSearchBarVisible={true}
           isProfileIconVisible={true}
-          searchHandler={this.onSearchEntered}/>
+          searchHandler={this.onSearchEntered}
+          handleLogout={this.logout}
+          handleAccount={this.navigateToAccount}/>
         <GridList cellHeight={'auto'} spacing={5}>
           {this.state.filteredData.map(item => (
             <GridListTile key={item.id}>
@@ -188,6 +191,15 @@ class Home extends Component{
     }).catch((error) => {
       console.log('error user data',error);
     });
+  }
+
+  logout = () => {
+    sessionStorage.clear();
+    this.props.history.replace('/');
+  }
+
+  navigateToAccount = () =>{
+    // this.props.history.push('/account');
   }
 }
 

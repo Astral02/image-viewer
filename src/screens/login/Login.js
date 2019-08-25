@@ -15,7 +15,7 @@ const styles = {
     card: {
         padding: '15px',
         position: 'relative',
-        top: '20px',
+        top: '90px',
         left: '50%',
         width: '325px',
         transform: 'translateX(-50%)',
@@ -50,9 +50,14 @@ class Login extends Component {
             sessionStorage.setItem('access-token', '8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784');
             sessionStorage.setItem('username','admin');
             this.setState({ loggedIn: true });
+            this.navigateToHome();
         } else {
             this.setState({ incorrectUsernamePassword: "dispBlock" });
         }
+    }
+
+    navigateToHome = () =>{
+      this.props.history.push('/home');
     }
 
     inputUsernameChangeHandler = (e) => {
@@ -65,8 +70,8 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
-                <Header />
+            <div className="main-container">
+                <Header/>
                 <Card style={styles.card}>
                     <CardContent>
                         <Typography style={styles.title}> LOGIN </Typography><br />
