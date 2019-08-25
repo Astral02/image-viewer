@@ -84,9 +84,8 @@ class Home extends Component{
     return(
       <div>
         <Header
-          userProfileUrl={this.state.userData.profile_picture}
-          isSearchBarVisible={true}
-          isProfileIconVisible={true}
+          userProfileUrl={this.state.userData.profile_picture}          
+          screen={"Home"}
           searchHandler={this.onSearchEntered}
           handleLogout={this.logout}
           handleAccount={this.navigateToAccount}/>
@@ -211,7 +210,7 @@ class Home extends Component{
   }
 
   navigateToAccount = () =>{
-    // this.props.history.push('/account');
+    this.props.history.push('/profile');
   }
 }
 
@@ -254,12 +253,12 @@ class HomeItem extends Component{
           <CardContent>
             <CardMedia
               className={classes.media}
-              image={item.images.standard_resolution.url}
-              title={item.caption.text}
+              image={item.images.standard_resolution.url}		 
+              title={item.caption != null ? item.caption.text : ""}
             />
             <div  className={classes.hr}>
               <Typography component="p">
-                {item.caption.text}
+              {item.caption && item.caption.text}
               </Typography>
               <Typography style={{color:'#4dabf5'}} component="p" >
                 {hashTags.join(' ')}
@@ -329,6 +328,9 @@ class HomeItem extends Component{
   }
 
   onAddCommentClicked = (id) => {
+    if (this.state.comment === "" || typeof this.state.comment === undefined) {
+      return;
+    }
     this.setState({
       comment:""
     });
