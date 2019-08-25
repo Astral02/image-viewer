@@ -1,5 +1,4 @@
-export const constants = {
-    hostUrl:"https://api.instagram.com/v1",
-    userBioUrl:"/users/self",
-    userMediaUrl:"/users/self/media/recent"
+export const constants = {    
+    userInfoUrl:"https://api.instagram.com/v1/users/self",
+    userMediaUrl:"https://api.instagram.com/v1/users/self/media/recent"
   }
