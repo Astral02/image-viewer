@@ -7,8 +7,8 @@ import {withStyles} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Popover from '@material-ui/core/Popover';
 
 const styles = theme => ({
   grow: {
@@ -22,7 +22,7 @@ const styles = theme => ({
     width: '300px',
   },
   searchIcon: {
-    width: theme.spacing.unit * 4,
+    width: theme.spacing.unit * 9,
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -35,7 +35,7 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit,
     paddingRight: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
-    paddingLeft: theme.spacing.unit * 4,
+    paddingLeft: theme.spacing.unit * 10,
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
@@ -48,6 +48,15 @@ const styles = theme => ({
   avatar: {
     width: 50,
     height: 50,
+  },
+  appHeader:{
+    backgroundColor:'#263238'
+  },
+  hr:{
+    height:'1.5px',
+    backgroundColor:'#f2f2f2',
+    marginLeft:'5px',
+    marginRight:'5px'
   }
 })
 
@@ -63,14 +72,14 @@ class Header extends Component{
   render(){
     const {classes, isSearchBarVisible, isProfileIconVisible} = this.props;
     return (<div>
-        <AppBar style={{backgroundColor:'#263238'}} className="app-header">
+        <AppBar className={classes.appHeader}>
           <Toolbar>
             <span className="header-logo">Image Viewer</span>
             <div className={classes.grow}/>
             {isSearchBarVisible &&
               <div className={classes.search}>
                 <div className={classes.searchIcon}>
-                  <SearchIcon />
+                  <SearchIcon/>
                 </div>
                 <InputBase onChange={(e)=>{this.props.searchHandler(e.target.value)}} placeholder="Search…" classes={{
                     input: classes.inputInput
@@ -80,16 +89,27 @@ class Header extends Component{
             {isProfileIconVisible &&
               <div>
                 <IconButton onClick={this.handleClick}>
-                  <Avatar alt="Profile Pic" src={this.props.userProfileUrl} className={classes.avatar} style={{border: "1px solid #fff"}}/>
+                  <Avatar alt="Profile Pic" src={this.props.userProfileUrl} className={classes.avatar}/>
                 </IconButton>
-                <Menu
+                <Popover
                   id="simple-menu"
                   anchorEl={this.state.anchorEl}
                   open={Boolean(this.state.anchorEl)}
-                  onClose={this.handleClose}>
-                    <MenuItem onClick={this.handleAccount}>My account</MenuItem><hr />
-                    <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
-                </Menu>
+                  onClose={this.handleClose}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}>
+                    <div style={{padding:'5px'}}>
+                      <MenuItem onClick={this.handleAccount}>My Account</MenuItem>
+                      <div className={classes.hr}/>
+                      <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
+                    </div>
+                </Popover>
               </div>
             }
           </Toolbar>
