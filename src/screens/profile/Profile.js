@@ -120,7 +120,6 @@ class Profile extends Component {
     var result = this.state.mediaData.find(item => {
       return item.id === event.target.id
     })
-    console.log(result);
     this.setState({ imageModalOpen: true, currentItem: result });
   }
 
