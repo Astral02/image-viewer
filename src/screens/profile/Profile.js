@@ -63,6 +63,7 @@ class Profile extends Component {
       currentItem: null,
       likeSet: new Set(),
       comments: {},
+      currentComment: '',
     }
   }
 
@@ -143,9 +144,9 @@ class Profile extends Component {
     if (this.state.newFullName === "") { return }
 
     this.setState({
-      full_name: this.state.newFullName
-    })
-
+      full_name: this.state.newFullName,
+      newFullName : '',
+    }) 
     this.handleCloseEditModal()
   }
 
